@@ -1,64 +1,94 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Landing Page Premium - Génération de Leads</title>
+<title>Création de Landing Page Premium | Génération de Leads</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #f5f7fa, #e4ecf7);
-    color: #1a1a1a;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #f8fafc, #eef2f7);
+    color: #1e293b;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: auto;
-    padding: 40px 20px;
+    padding: 50px 20px;
 }
 
-h1 {
-    font-size: 36px;
+.hero {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.hero h1 {
+    font-size: 42px;
     color: #0f172a;
 }
 
-h2 {
-    color: #2563eb;
+.hero p {
+    font-size: 18px;
+    max-width: 700px;
+    margin: auto;
+    color: #475569;
+}
+
+.section {
+    margin-bottom: 60px;
+}
+
+.images {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.images img {
+    width: 100%;
+    max-width: 480px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
 }
 
 .card {
     background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    margin-top: 30px;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+ul {
+    line-height: 1.8;
 }
 
 input, textarea, select {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    padding: 14px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 15px;
 }
 
 button {
     margin-top: 20px;
-    padding: 14px;
+    padding: 16px;
     width: 100%;
     background: #2563eb;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #1e40af;
+    background: #1d4ed8;
 }
 
 .success-message {
@@ -76,27 +106,44 @@ button:hover {
 
 <div class="container">
 
-<h1>🚀 Générez des prospects qualifiés en moins de 7 jours</h1>
-
+<div class="hero">
+<h1>🚀 Transformez vos visiteurs en clients grâce à une Landing Page Premium</h1>
 <p>
-Nous créons pour vous une <strong>landing page premium optimisée conversion</strong> 
-qui transforme vos visiteurs en clients.
+Nous concevons des landing pages stratégiques, modernes et optimisées conversion 
+pour générer des prospects qualifiés et augmenter vos ventes rapidement.
 </p>
+</div>
 
-<div class="card">
-<h2>🔥 Pack Lancement – 149€</h2>
+<div class="section images">
+<img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a" alt="Design landing page">
+<img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c" alt="Création site web">
+</div>
 
+<div class="section card">
+<h2>💼 Pourquoi investir dans une landing page professionnelle ?</h2>
 <ul>
-<li>Landing page design premium</li>
-<li>Formulaire connecté à Google Sheets</li>
-<li>Installation complète sur Vercel</li>
-<li>Livraison en 48h</li>
-<li>1 modification gratuite</li>
+<li>Augmente significativement votre taux de conversion</li>
+<li>Structure votre offre de manière persuasive</li>
+<li>Capture automatiquement vos prospects</li>
+<li>Optimisée pour la publicité Facebook & Google</li>
+<li>Image professionnelle et crédible</li>
 </ul>
 </div>
 
-<div class="card">
-<h2>📩 Demandez votre landing page maintenant</h2>
+<div class="section card">
+<h2>🔥 Pack Lancement – 149€</h2>
+<ul>
+<li>Design premium moderne et responsive</li>
+<li>Formulaire connecté à Google Sheets</li>
+<li>Connexion automatique via Zapier</li>
+<li>Installation complète sur Vercel</li>
+<li>Livraison en 48h</li>
+<li>Support technique inclus</li>
+</ul>
+</div>
+
+<div class="section card">
+<h2>📩 Demandez votre Landing Page dès maintenant</h2>
 
 <form id="leadForm">
 
@@ -109,18 +156,18 @@ qui transforme vos visiteurs en clients.
 <option>Coaching</option>
 <option>E-commerce</option>
 <option>Immobilier</option>
-<option>Formation en ligne</option>
+<option>Formation</option>
 <option>Entreprise locale</option>
 <option>Autre</option>
 </select>
 
-<textarea name="description" placeholder="Décrivez votre projet ou objectif" rows="4" required></textarea>
+<textarea name="description" placeholder="Décrivez votre projet et vos objectifs" rows="4" required></textarea>
 
-<button type="submit">Obtenir ma landing page</button>
+<button type="submit">🚀 Obtenir ma Landing Page Premium</button>
 
 <div class="success-message" id="successMsg">
 ✅ Merci ! Votre demande a été envoyée avec succès.  
-Nous vous contacterons sous 24h.
+Nous vous contacterons sous 24 heures.
 </div>
 
 </form>
@@ -131,18 +178,17 @@ Nous vous contacterons sous 24h.
 <script>
 document.getElementById("leadForm").addEventListener("submit", function(e){
     e.preventDefault();
-
     const formData = new FormData(this);
 
-    fetch("https://hooks.zapier.com/hooks/catch/26684326/u0x58np/", {
+    fetch("https://hooks.zapier.com/hooks/catch/26684326/u0xsju9/", {
         method: "POST",
         body: formData
     })
-    .then(response => {
+    .then(() => {
         document.getElementById("successMsg").style.display = "block";
         document.getElementById("leadForm").reset();
     })
-    .catch(error => {
+    .catch(() => {
         alert("Erreur d'envoi. Vérifiez votre webhook Zapier.");
     });
 });
