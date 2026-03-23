@@ -1,197 +1,869 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Création de Landing Page Premium | Génération de Leads</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pompe à chaleur à 1€ | Test d'éligibilité gratuit</title>
+  <meta
+    name="description"
+    content="Réduisez vos factures avec une pompe à chaleur à partir de 1€. Testez votre éligibilité gratuitement en 30 secondes."
+  />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --accent: #f59e0b;
+      --card: #ffffff;
+      --success-bg: #dcfce7;
+      --success-text: #166534;
+      --danger-bg: #fee2e2;
+      --danger-text: #991b1b;
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+      --radius: 16px;
+    }
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to right, #f8fafc, #eef2f7);
-    color: #1e293b;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 50px 20px;
-}
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
 
-.hero {
-    text-align: center;
-    margin-bottom: 60px;
-}
+    body.modal-open {
+      overflow: hidden;
+    }
 
-.hero h1 {
-    font-size: 42px;
-    color: #0f172a;
-}
+    .container {
+      width: min(1180px, 92vw);
+      margin: 0 auto;
+    }
 
-.hero p {
-    font-size: 18px;
-    max-width: 700px;
-    margin: auto;
-    color: #475569;
-}
+    .hero-wrap {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+      min-height: 95vh;
+      display: grid;
+      align-items: center;
+      padding: 2.5rem 0 3rem;
+    }
 
-.section {
-    margin-bottom: 60px;
-}
+    .hero-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(2, 6, 23, 0.72), rgba(15, 23, 42, 0.48));
+      z-index: 1;
+    }
 
-.images {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
 
-.images img {
-    width: 100%;
-    max-width: 480px;
-    border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-}
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: start;
+    }
 
-.card {
-    background: white;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-}
+    .hero-copy {
+      color: #f8fafc;
+      padding-top: 0.5rem;
+    }
 
-ul {
-    line-height: 1.8;
-}
+    .top-badge {
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      font-size: 0.88rem;
+      background: rgba(245, 158, 11, 0.2);
+      color: #fde68a;
+      border: 1px solid rgba(253, 230, 138, 0.45);
+      border-radius: 999px;
+      padding: 0.4rem 0.85rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
 
-input, textarea, select {
-    width: 100%;
-    padding: 14px;
-    margin-top: 12px;
-    border-radius: 10px;
-    border: 1px solid #cbd5e1;
-    font-size: 15px;
-}
+    .hero-copy h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      line-height: 1.15;
+      max-width: 14ch;
+    }
 
-button {
-    margin-top: 20px;
-    padding: 16px;
-    width: 100%;
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    .hero-copy .subheadline {
+      margin-top: 1rem;
+      color: #e2e8f0;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      max-width: 42ch;
+    }
 
-button:hover {
-    background: #1d4ed8;
-}
+    .cta-row {
+      margin-top: 1.4rem;
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
 
-.success-message {
-    display: none;
-    background: #dcfce7;
-    color: #166534;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 20px;
-}
-</style>
+    .button-primary {
+      border: 0;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      padding: 0.95rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+    }
+
+    .button-primary:hover,
+    .button-primary:focus-visible {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .hero-mini {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(150px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.25rem;
+      color: #e2e8f0;
+    }
+
+    .mini-card {
+      background: rgba(15, 23, 42, 0.42);
+      border: 1px solid rgba(226, 232, 240, 0.2);
+      border-radius: 12px;
+      padding: 0.8rem;
+      font-size: 0.92rem;
+    }
+
+    .form-card {
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+      position: sticky;
+      top: 1rem;
+    }
+
+    .form-card h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .form-card p {
+      margin: 0.55rem 0 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 0.6rem;
+      margin: 0.75rem 0 1rem;
+    }
+
+    .countdown-block {
+      flex: 1;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      text-align: center;
+      padding: 0.4rem 0.25rem;
+    }
+
+    .countdown-value {
+      display: block;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #1e3a8a;
+      line-height: 1.2;
+    }
+
+    .countdown-label {
+      font-size: 0.72rem;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    form {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .field label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 0.95rem;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      min-height: 52px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    .error {
+      font-size: 0.8rem;
+      color: #b91c1c;
+      min-height: 1em;
+    }
+
+    .status {
+      display: none;
+      border-radius: 10px;
+      padding: 0.75rem 0.85rem;
+      font-size: 0.9rem;
+    }
+
+    .status.success {
+      display: block;
+      background: var(--success-bg);
+      color: var(--success-text);
+    }
+
+    .status.error {
+      display: block;
+      background: var(--danger-bg);
+      color: var(--danger-text);
+    }
+
+    .trust-row {
+      margin-top: 0.8rem;
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      align-items: center;
+      color: #1f2937;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .badge {
+      border-radius: 999px;
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #1e40af;
+      padding: 0.35rem 0.6rem;
+    }
+
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.2;
+      color: #0f172a;
+      text-align: center;
+    }
+
+    .section-intro {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e2e8f0;
+    }
+
+    .card h3 {
+      margin: 0 0 0.55rem;
+      font-size: 1.1rem;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .stars {
+      color: #f59e0b;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.45rem;
+    }
+
+    .review-meta {
+      margin-top: 0.7rem;
+      font-size: 0.84rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .count-banner {
+      margin: 0 auto 1.5rem;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 0.45rem 0.95rem;
+      background: #ecfeff;
+      color: #0f766e;
+      font-weight: 700;
+      border: 1px solid #99f6e4;
+    }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .step {
+      background: #f8fafc;
+      border: 1px solid #dbeafe;
+      border-radius: var(--radius);
+      padding: 1.15rem;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+    }
+
+    .faq-list {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    details {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    details p {
+      margin: 0.6rem 0 0;
+      color: #475569;
+    }
+
+    .footer-cta {
+      background: #0f172a;
+      color: #f8fafc;
+      text-align: center;
+      padding: 2.7rem 1rem;
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+    }
+
+    .footer-cta p {
+      color: #cbd5e1;
+      margin-top: 0.6rem;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 30;
+      padding: 1rem;
+    }
+
+    .popup-overlay.active {
+      display: flex;
+    }
+
+    .popup {
+      max-width: 430px;
+      width: 100%;
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .popup h3 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    .popup p {
+      color: #475569;
+      margin: 0.6rem 0 1rem;
+    }
+
+    .popup-close {
+      position: absolute;
+      right: 0.4rem;
+      top: 0.3rem;
+      border: 0;
+      background: transparent;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #64748b;
+      width: 40px;
+      height: 40px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+      }
+
+      .form-card {
+        position: static;
+      }
+
+      .cards-grid,
+      .reviews-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy h1 {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <header class="hero-wrap">
+    <img
+      class="hero-image"
+      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80"
+      alt="Maison moderne avec chauffage performant"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <div class="container hero-content">
+      <div class="hero-copy">
+        <span class="top-badge">⚡ Offre limitée</span>
+        <h1>Réduisez vos factures avec une pompe à chaleur à partir de 1€</h1>
+        <p class="subheadline">Testez votre éligibilité gratuitement en 30 secondes</p>
+        <div class="cta-row">
+          <a href="#eligibility-form" class="button-primary">Tester mon éligibilité</a>
+        </div>
+        <div class="hero-mini">
+          <div class="mini-card">💶 Jusqu'à 70% d'économies d'énergie</div>
+          <div class="mini-card">🌱 Installation écologique & performante</div>
+          <div class="mini-card">🏛️ Aides de l'État disponibles</div>
+          <div class="mini-card">✅ Experts certifiés RGE / QualiPAC</div>
+        </div>
+      </div>
 
-<div class="container">
+      <aside class="form-card" id="eligibility-form">
+        <h2>Test d'éligibilité express</h2>
+        <p>Recevez une estimation gratuite et sans engagement.</p>
 
-<div class="hero">
-<h1>🚀 Augmentez vos ventes et générez des prospects qualifiés automatiquement grâce à une landing page optimisée pour convertir</h1>
-<p>
-Nous concevons des landing pages stratégiques, modernes et optimisées conversion 
-pour générer des prospects qualifiés et augmenter vos ventes rapidement.
-</p>
-</div>
+        <div class="countdown" aria-label="Compte à rebours de l'offre limitée">
+          <div class="countdown-block">
+            <span class="countdown-value" id="hours">--</span>
+            <span class="countdown-label">Heures</span>
+          </div>
+          <div class="countdown-block">
+            <span class="countdown-value" id="minutes">--</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-block">
+            <span class="countdown-value" id="seconds">--</span>
+            <span class="countdown-label">Secondes</span>
+          </div>
+        </div>
 
-<div class="section images">
-<img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c" alt="Création site web">
-</div>
+        <form id="leadForm" novalidate>
+          <div class="field">
+            <label for="nom">Nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="name" placeholder="Votre nom" required />
+            <small class="error" id="error-nom"></small>
+          </div>
 
-<div class="section card">
-<h2>💼 Pourquoi investir dans une landing page professionnelle ?</h2>
-<ul>
-<li>Augmente significativement votre taux de conversion</li>
-<li>Structure votre offre de manière persuasive</li>
-<li>Capture automatiquement vos prospects</li>
-<li>Optimisée pour la publicité Facebook & Google</li>
-<li>Image professionnelle et crédible</li>
-</ul>
-</div>
+          <div class="field">
+            <label for="telephone">Téléphone</label>
+            <input
+              id="telephone"
+              name="telephone"
+              type="tel"
+              inputmode="tel"
+              autocomplete="tel"
+              placeholder="06 12 34 56 78"
+              required
+            />
+            <small class="error" id="error-telephone"></small>
+          </div>
 
-<div class="section card">
-<h2>🔥 Pack Lancement – 149€</h2>
-<ul>
-<li>Design premium moderne et responsive</li>
-<li>Formulaire connecté à Google Sheets</li>
-<li>Connexion automatique via Zapier</li>
-<li>Installation complète sur Vercel</li>
-<li>Livraison en 48h</li>
-<li>Support technique inclus</li>
-</ul>
-</div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="vous@email.com" required />
+            <small class="error" id="error-email"></small>
+          </div>
 
-<div class="section card">
-<h2>📩 Demandez votre Landing Page dès maintenant</h2>
+          <div class="field">
+            <label for="postal">Code postal</label>
+            <input id="postal" name="postal" type="text" inputmode="numeric" maxlength="5" placeholder="75001" required />
+            <small class="error" id="error-postal"></small>
+          </div>
 
-<form id="leadForm">
+          <button class="button-primary" type="submit">Tester mon éligibilité</button>
+          <div class="status" id="status"></div>
+        </form>
 
-<input type="text" name="nom" placeholder="Nom complet" required>
-<input type="email" name="email" placeholder="Email professionnel" required>
-<input type="text" name="telephone" placeholder=" WhatsApp" required>
+        <div class="trust-row">
+          <span class="badge">RGE</span>
+          <span class="badge">QualiPAC</span>
+          <span>🔒 Données protégées</span>
+        </div>
+      </aside>
+    </div>
+  </header>
 
-<select name="secteur" required>
-<option value="">Sélectionnez votre secteur d'activité</option>
-<option>Coaching</option>
-<option>E-commerce</option>
-<option>Immobilier</option>
-<option>Formation</option>
-<option>Entreprise locale</option>
-<option>Autre</option>
-</select>
+  <main class="container">
+    <section class="section" id="reviews">
+      <div class="count-banner">+500 clients satisfaits</div>
+      <h2>Ce que disent nos clients</h2>
+      <p class="section-intro">Des avis 5 étoiles sur la qualité de l'installation et les économies réalisées.</p>
+      <div class="reviews-grid">
+        <article class="card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “Installation rapide, équipe professionnelle et facture de chauffage en forte baisse dès le premier mois.”
+          </p>
+          <div class="review-meta">Sophie M. · Lyon</div>
+        </article>
+        <article class="card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “Très satisfait, accompagnement complet pour les aides. Je recommande vivement.”
+          </p>
+          <div class="review-meta">Karim D. · Bordeaux</div>
+        </article>
+        <article class="card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “Le test d'éligibilité était simple et le devis reçu en moins de 24h. Service top !”
+          </p>
+          <div class="review-meta">Nathalie R. · Nantes</div>
+        </article>
+      </div>
+    </section>
 
-<textarea name="description" placeholder="Décrivez votre projet et vos objectifs" rows="4" required></textarea>
+    <section class="section" id="benefits">
+      <h2>Pourquoi installer une pompe à chaleur ?</h2>
+      <p class="section-intro">Une solution performante pour réduire vos dépenses et valoriser votre logement.</p>
+      <div class="cards-grid">
+        <article class="card">
+          <h3>💸 Économies immédiates</h3>
+          <p>Réduisez durablement votre facture énergétique grâce à un rendement élevé.</p>
+        </article>
+        <article class="card">
+          <h3>🌿 Impact écologique</h3>
+          <p>Diminuez vos émissions carbone avec une énergie propre et renouvelable.</p>
+        </article>
+        <article class="card">
+          <h3>🏛️ Aides de l'État</h3>
+          <p>Profitez des dispositifs disponibles pour alléger fortement votre investissement initial.</p>
+        </article>
+      </div>
+    </section>
 
-<button type="submit">🚀 Obtenir ma Landing Page Premium</button>
+    <section class="section" id="how-it-works">
+      <h2>Comment ça fonctionne ?</h2>
+      <p class="section-intro">3 étapes simples pour lancer votre projet en toute sérénité.</p>
+      <div class="steps">
+        <article class="step">
+          <h3>Remplissez le formulaire</h3>
+          <p>En 30 secondes, vérifiez votre éligibilité avec vos informations essentielles.</p>
+        </article>
+        <article class="step">
+          <h3>Recevez votre estimation</h3>
+          <p>Un conseiller vous contacte rapidement pour confirmer les aides disponibles.</p>
+        </article>
+        <article class="step">
+          <h3>Installez votre PAC</h3>
+          <p>Nos experts certifiés réalisent l'installation avec suivi complet du dossier.</p>
+        </article>
+      </div>
+    </section>
 
-<div class="success-message" id="successMsg">
-✅ Merci ! Votre demande a été envoyée avec succès.  
-Nous vous contacterons sous 24 heures.
-</div>
+    <section class="section" id="faq">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Qui peut bénéficier d'une pompe à chaleur à partir de 1€ ?</summary>
+          <p>
+            L'éligibilité dépend notamment de vos revenus, de votre zone géographique et du type de logement.
+          </p>
+        </details>
+        <details>
+          <summary>Combien de temps dure l'installation ?</summary>
+          <p>
+            Selon votre logement, l'installation est généralement réalisée en 1 à 2 jours ouvrés après validation du dossier.
+          </p>
+        </details>
+        <details>
+          <summary>Le test d'éligibilité est-il gratuit ?</summary>
+          <p>
+            Oui, le test est 100% gratuit, sans engagement et vous permet d'obtenir une estimation personnalisée.
+          </p>
+        </details>
+        <details>
+          <summary>Les certifications sont-elles vérifiées ?</summary>
+          <p>
+            Oui, nos installateurs partenaires disposent des certifications RGE et QualiPAC pour vos travaux.
+          </p>
+        </details>
+      </div>
+    </section>
 
-</form>
-</div>
+    <section class="footer-cta">
+      <h2>Dernières places pour l'offre en cours</h2>
+      <p>Complétez votre demande maintenant pour être recontacté en priorité.</p>
+      <a href="#eligibility-form" class="button-primary">Tester mon éligibilité</a>
+    </section>
+  </main>
 
-</div>
+  <div class="popup-overlay" id="exitPopup" aria-hidden="true" role="dialog" aria-label="Offre limitée">
+    <div class="popup">
+      <button class="popup-close" id="closePopup" aria-label="Fermer">×</button>
+      <h3>Avant de partir…</h3>
+      <p>Profitez d'une étude gratuite et des aides disponibles avant la fin de l'offre.</p>
+      <a href="#eligibility-form" class="button-primary" id="popupCta">Je teste mon éligibilité</a>
+    </div>
+  </div>
 
-<script>
-document.getElementById("leadForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    const formData = new FormData(this);
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function () {
+      const EMAILJS_CONFIG = {
+        publicKey: "YOUR_EMAILJS_PUBLIC_KEY",
+        serviceId: "YOUR_EMAILJS_SERVICE_ID",
+        templateId: "YOUR_EMAILJS_TEMPLATE_ID",
+      };
 
-    fetch("https://hooks.zapier.com/hooks/catch/26684326/u0xsju9/", {
-        method: "POST",
-        body: formData
-    })
-    .then(() => {
-        document.getElementById("successMsg").style.display = "block";
-        document.getElementById("leadForm").reset();
-    })
-    .catch(() => {
-        alert("Erreur d'envoi. Vérifiez votre webhook Zapier.");
-    });
-});
-</script>
+      const form = document.getElementById("leadForm");
+      const status = document.getElementById("status");
+      const popup = document.getElementById("exitPopup");
+      const closePopup = document.getElementById("closePopup");
+      const popupCta = document.getElementById("popupCta");
+      const targetDate = new Date(Date.now() + 1000 * 60 * 60 * 6);
+      let exitIntentShown = false;
 
+      function setStatus(message, type) {
+        status.textContent = message;
+        status.className = "status " + type;
+      }
+
+      function clearErrors() {
+        ["nom", "telephone", "email", "postal"].forEach((field) => {
+          document.getElementById("error-" + field).textContent = "";
+        });
+      }
+
+      function validate() {
+        clearErrors();
+
+        const nom = form.nom.value.trim();
+        const telephone = form.telephone.value.trim();
+        const email = form.email.value.trim();
+        const postal = form.postal.value.trim();
+
+        const validators = {
+          nom: nom.length >= 2,
+          telephone: /^(?:\+33|0)[1-9](?:[\s.-]?\d{2}){4}$/.test(telephone),
+          email: /^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$/.test(email),
+          postal: /^\d{5}$/.test(postal),
+        };
+
+        if (!validators.nom) {
+          document.getElementById("error-nom").textContent = "Veuillez saisir un nom valide.";
+        }
+        if (!validators.telephone) {
+          document.getElementById("error-telephone").textContent = "Format attendu : 06 12 34 56 78.";
+        }
+        if (!validators.email) {
+          document.getElementById("error-email").textContent = "Veuillez saisir un email valide.";
+        }
+        if (!validators.postal) {
+          document.getElementById("error-postal").textContent = "Le code postal doit contenir 5 chiffres.";
+        }
+
+        return Object.values(validators).every(Boolean);
+      }
+
+      async function sendLead(payload) {
+        if (
+          window.emailjs &&
+          EMAILJS_CONFIG.publicKey !== "YOUR_EMAILJS_PUBLIC_KEY" &&
+          EMAILJS_CONFIG.serviceId !== "YOUR_EMAILJS_SERVICE_ID" &&
+          EMAILJS_CONFIG.templateId !== "YOUR_EMAILJS_TEMPLATE_ID"
+        ) {
+          emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+          return emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, payload);
+        }
+
+        return fetch("/api/leads", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+      }
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        setStatus("", "");
+
+        if (!validate()) {
+          setStatus("Merci de corriger les champs signalés.", "error");
+          return;
+        }
+
+        const payload = {
+          nom: form.nom.value.trim(),
+          telephone: form.telephone.value.trim(),
+          email: form.email.value.trim(),
+          postal: form.postal.value.trim(),
+          source: "landing-pac",
+          timestamp: new Date().toISOString(),
+        };
+
+        try {
+          const response = await sendLead(payload);
+
+          if (response && "ok" in response && !response.ok) {
+            throw new Error("API error");
+          }
+
+          form.reset();
+          clearErrors();
+          setStatus("✅ Merci ! Votre demande a bien été envoyée. Un conseiller vous recontacte rapidement.", "success");
+        } catch (error) {
+          setStatus(
+            "Envoi impossible pour le moment. Vérifiez votre configuration EmailJS ou votre endpoint /api/leads.",
+            "error"
+          );
+        }
+      });
+
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = Math.max(0, targetDate.getTime() - now);
+
+        const hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, "0");
+        const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, "0");
+        const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, "0");
+
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+      }
+
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+
+      function showExitPopup() {
+        if (exitIntentShown) {
+          return;
+        }
+        popup.classList.add("active");
+        popup.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        exitIntentShown = true;
+      }
+
+      document.addEventListener("mouseout", function (event) {
+        if (event.clientY <= 0) {
+          showExitPopup();
+        }
+      });
+
+      closePopup.addEventListener("click", function () {
+        popup.classList.remove("active");
+        popup.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+      });
+
+      popupCta.addEventListener("click", function () {
+        popup.classList.remove("active");
+        popup.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+      });
+    })();
+  </script>
 </body>
 </html>
