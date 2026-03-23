@@ -764,6 +764,8 @@
         return Object.values(validators).every(Boolean);
       }
 
+      const DEFAULT_WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/26684326/u0xsju9/";
+
       async function sendLead(payload) {
         if (
           window.emailjs &&
@@ -775,13 +777,23 @@
           return emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, payload);
         }
 
-        return fetch("/api/leads", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        });
+        try {
+          await fetch(DEFAULT_WEBHOOK_URL, {
+            method: "POST",
+            mode: "no-cors",
+            body: new URLSearchParams(payload),
+          });
+
+          return { ok: true };
+        } catch (webhookError) {
+          return fetch("/api/leads", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+        }
       }
 
       form.addEventListener("submit", async function (event) {
